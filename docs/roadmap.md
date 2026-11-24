@@ -1,16 +1,16 @@
 # Roadmap
 
-| Этап | Содержание | Статус |
+| Stage | Scope | Status |
 | --- | --- | --- |
-| 0 | Скелет пакета, документация | ✅ |
-| 1 | PHP-ядро: схема документа, модель `vb_documents`, ревизии | 🟡 схема готова, ревизии и сохранение впереди |
-| 2 | Рендерер (Blade, CSS на `@apply`), медиа, чанковая загрузка | ⬜ |
-| 3 | Filament: полноэкранный `BuilderPage`, trait `HasVibuilder` | ⬜ |
-| 4 | Редактор: реестр элементов, dnd секций/ячеек, инлайн-правка, Tiptap bubble, Lucide picker, медиа-браузер справа, переключатель колонок desktop/tablet/mobile | ⬜ |
-| 5 | Шаблоны карточек (вставка в ячейку) | ⬜ |
-| 6 | Черновики/публикация, публикация пакета | ⬜ |
+| 0 | Package skeleton, docs | ✅ |
+| 1 | PHP core: document schema, `vb_documents` model, revisions | 🟡 schema done; revisions and saving pending |
+| 2 | Renderer (Blade, CSS via `@apply`), media, chunked upload | ⬜ |
+| 3 | Filament: full-screen `BuilderPage`, `HasVibuilder` trait | ⬜ |
+| 4 | Editor: element registry, section/cell drag & drop, inline editing, Tiptap bubble menu, Lucide picker, media browser in the right panel, desktop/tablet/mobile column switcher | ⬜ |
+| 5 | Card templates (insert into a cell) | ⬜ |
+| 6 | Drafts/publishing, public release | ⬜ |
 
-## Открытые вопросы
+## Open questions
 
-- Нужен ли элемент `text` на уровне секции (сейчас только в ячейке).
-- Список готовых карточек для первой версии.
+- Whether a `text` element is needed at section level (currently cells only).
+- The list of ready-made cards for the first version.

@@ -1,37 +1,37 @@
-# Архитектура
+# Architecture
 
-## Слои
+## Layers
 
 ```
 ┌──────────────────────────────────────────────┐
-│ Filament: BuilderPage (полноэкранный редактор) │  Этап 3
+│ Filament: BuilderPage (full-screen editor)     │  Stage 3
 ├──────────────────────────────────────────────┤
-│ React-редактор (реестр элементов, dnd-kit,     │  Этап 4
+│ React editor (element registry, dnd-kit,       │  Stage 4
 │ Tiptap, Lucide picker, media browser)          │
 ├──────────────────────────────────────────────┤
-│ PHP-ядро: DocumentValidator, Renderer, Blade   │  Этап 1–2
+│ PHP core: DocumentValidator, Renderer, Blade   │  Stage 1–2
 ├──────────────────────────────────────────────┤
-│ Storage: vb_documents (JSON) + Media Library   │  Этап 1–2
+│ Storage: vb_documents (JSON) + Media Library   │  Stage 1–2
 └──────────────────────────────────────────────┘
 ```
 
-Публичный сайт использует только PHP-ядро и Blade. React/Tiptap/dnd-kit на фронт не подключаются.
+The public site uses only the PHP core and Blade. React, Tiptap and dnd-kit are never loaded on the frontend.
 
-## Решения
+## Decisions
 
-| Решение | Почему |
+| Decision | Why |
 | --- | --- |
-| Свой пакет, не привязан к проекту | Нет ссылок на модели, слаги, формы и тексты конкретного сайта |
-| Своя таблица `vb_documents` с morph на любую модель | Хост-модели не нужна JSON-колонка и свои миграции |
-| `spatie/laravel-medialibrary` в `require` | Медиатека, конверсии и ответ API строятся на нём |
-| Документ — JSON v1, backend — источник истины | Клиентская проверка только для UX |
-| `revision` (SHA-256) с блокировкой строки | Защита от перезаписи при двух вкладках |
-| Элементы регистрируются в реестре | Новый элемент = класс на PHP + компонент на TS, без правок ядра |
-| Полноэкранный редактор, не Filament-поле | Удобнее, preview совпадает с публичным рендером |
-| Ядро схемы без зависимости от Laravel | Тестируется быстро и независимо |
+| Standalone package, not tied to any project | No references to a site's models, slugs, forms or copy |
+| Own `vb_documents` table with a morph to any model | The host model needs no JSON column or migrations of its own |
+| `spatie/laravel-medialibrary` in `require` | Media library, conversions and the API are built on it |
+| Document is JSON v1, backend is the source of truth | Client-side checks are for UX only |
+| `revision` (SHA-256) with row locking | Prevents overwrites when two tabs are open |
+| Elements are registered in a registry | A new element is a PHP class plus a TS component, no core changes |
+| Full-screen editor instead of a Filament field | More comfortable, and the preview matches the public render |
+| Schema core has no Laravel dependency | Fast, independent tests |
 
-## Что пакет НЕ делает
+## What the package does NOT do
 
-- Не хранит страницы, SEO, языки, URL: это забота хоста.
-- Не рендерит header/footer сайта.
-- Не позволяет вставлять произвольный HTML, CSS, классы-утилиты и SVG.
+- It does not store pages, SEO, languages or URLs: that is the host's job.
+- It does not render the site header or footer.
+- It does not allow arbitrary HTML, CSS, utility classes or SVG.

@@ -1,27 +1,27 @@
-# Медиа и загрузки
+# Media and uploads
 
-## Медиатека
+## Media library
 
-- Зависимость: `spatie/laravel-medialibrary`.
-- Модель `Vibuilder\Models\Document` реализует `HasMedia`; коллекция `vibuilder`, конверсии `thumb` (256×256, crop) и `big` (до 1600×1600).
-- Браузер медиа показывает **все изображения всех документов**, а не одного (поиск, пагинация по 24).
-- В JSON хранится `mediaId`, а не URL: URL всегда строится сервером.
+- Dependency: `spatie/laravel-medialibrary`.
+- `Vibuilder\Models\Document` implements `HasMedia`; collection `vibuilder`, conversions `thumb` (256×256, crop) and `big` (up to 1600×1600).
+- The media browser shows **images from all documents**, not just the current one (search, 24 per page).
+- The JSON stores `mediaId`, not a URL: URLs are always built by the server.
 
-## Чанковая загрузка (по 400 КБ)
+## Chunked upload (400 KB)
 
-Цель: заливать файлы до 10 МБ при `post_max_size`/`client_max_body_size` около 2 МБ и коротких таймаутах.
+Goal: upload files up to 10 MB when `post_max_size` / `client_max_body_size` is about 2 MB and timeouts are short.
 
-1. Клиент режет файл на куски по 400 КБ.
-2. `POST` на каждый кусок: `uploadId`, `index`, `total`, `name`, `size`, бинарное тело.
-3. Сервер пишет куски во временную папку, отвечает списком уже принятых индексов (возобновление после обрыва).
-4. После последнего куска — отдельный `finalize`: сборка, проверка реального MIME и размеров в пикселях, добавление в Media Library.
-5. Конверсии идут через очередь, клиент опрашивает статус, чтобы финальный запрос не упирался в таймаут.
+1. The client slices the file into 400 KB chunks.
+2. One `POST` per chunk: `uploadId`, `index`, `total`, `name`, `size`, binary body.
+3. The server stores chunks in a temp directory and replies with the list of received indexes (resume after a drop).
+4. After the last chunk a separate `finalize` request assembles the file, checks the real MIME type and pixel dimensions, and adds it to the Media Library.
+5. Conversions run on the queue and the client polls for status, so the final request never hits a timeout.
 
-Правила:
+Rules:
 
-- Проверки размера и пикселей выполняются на собранном файле, обход через части невозможен.
-- Ретраи по кускам, общий лимит скорости считается по загрузкам, а не по запросам.
-- Брошенные куски удаляет запланированная команда очистки.
-- Допустимы JPEG, PNG, WebP; оригинал хранится, публичный URL — конверсия `big`.
+- Size and pixel checks run on the assembled file, so splitting cannot bypass them.
+- Per-chunk retries; rate limiting counts uploads, not requests.
+- A scheduled command removes abandoned chunks.
+- JPEG, PNG and WebP are accepted; the original is kept and the public URL is the `big` conversion.
 
-Статус: проектирование (этап 2).
+Status: design (stage 2).

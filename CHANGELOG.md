@@ -3,6 +3,6 @@
 ## Unreleased
 
 ### Added
-- Скелет composer-пакета, service provider, конфиг, миграция `vb_documents`.
-- Схема документа v1 (`Vibuilder\Schema\DocumentValidator`): секции, grid, ячейки, элементы heading/lead/text/image/icon/button.
-- Документация: архитектура, модель элементов, CSS-конвенции, медиа и загрузки, установка, roadmap.
+- Composer package skeleton, service provider, config, `vb_documents` migration.
+- Document schema v1 (`Vibuilder\Schema\DocumentValidator`): sections, grid, cells, elements heading/lead/text/image/icon/button.
+- Docs: architecture, element model, CSS conventions, media and uploads, installation, roadmap.

@@ -1,6 +1,6 @@
-# Установка (локально, без публикации)
+# Installation (local, unpublished)
 
-В проекте-потребителе:
+In the consuming project:
 
 ```json
 {
@@ -17,9 +17,9 @@ php artisan vendor:publish --tag=vibuilder-config
 php artisan migrate
 ```
 
-Из-за `symlink` любая правка пакета сразу видна в проекте. Позже вместо `path` можно указать `vcs` на git-репозиторий.
+Because of `symlink`, every change to the package is visible in the project immediately. Later, replace `path` with a `vcs` repository pointing at git.
 
-## Разработка пакета
+## Developing the package
 
 ```bash
 composer update

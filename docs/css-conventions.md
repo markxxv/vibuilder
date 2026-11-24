@@ -1,14 +1,14 @@
-# CSS-конвенции
+# CSS conventions
 
-## Правило
+## The rule
 
-В HTML/Blade/JSX — **только семантические классы**. Tailwind-утилиты пишутся в CSS через `@apply`.
+In HTML/Blade/JSX use **semantic classes only**. Tailwind utilities are written in CSS via `@apply`.
 
 ```html
-<!-- нельзя -->
+<!-- don't -->
 <div class="grid grid-cols-2 gap-6">
 
-<!-- можно -->
+<!-- do -->
 <div class="vb-grid">
 ```
 
@@ -19,19 +19,19 @@
 }
 ```
 
-## Именование
+## Naming
 
-- Префикс `vb-` у всего, что принадлежит пакету: `vb-section`, `vb-grid`, `vb-cell`, `vb-heading`, `vb-button`.
-- Варианты: `vb-section--hero`, `vb-button--primary` (модификатор через `--`).
-- Классы редактора (рамки, handles, панели) — префикс `vbe-`: `vbe-toolbar`, `vbe-handle`. На фронт не попадают.
-- Хост добавляет свои классы секции через tags input (`services`, `faq`), стили для них пишет сам.
+- Everything owned by the package is prefixed `vb-`: `vb-section`, `vb-grid`, `vb-cell`, `vb-heading`, `vb-button`.
+- Variants use a `--` modifier: `vb-section--hero`, `vb-button--primary`.
+- Editor-only classes (outlines, handles, panels) use the `vbe-` prefix: `vbe-toolbar`, `vbe-handle`. They never reach the frontend.
+- The host adds its own section classes through the tags input (`services`, `faq`) and writes the styles for them.
 
-## Адаптивность
+## Responsiveness
 
-Число колонок передаётся CSS-переменными `--vb-cols-desktop|tablet|mobile` (значения валидирует PHP). Брейкпоинты —
-container queries, чтобы preview в редакторе совпадал с фронтом независимо от ширины админки.
+Column counts are passed as CSS variables `--vb-cols-desktop|tablet|mobile` (values validated by PHP). Breakpoints use
+container queries so the editor preview matches the frontend regardless of the admin window width.
 
-## Изоляция
+## Isolation
 
-- Никаких глобальных селекторов на `h1, p, a, button`: все правила под `.vb-*`.
-- Один общий CSS для preview и публичной страницы, редакторские правила отдельно (`vbe-*`).
+- No global selectors on `h1, p, a, button`: every rule lives under `.vb-*`.
+- One shared stylesheet for the preview and the public page; editor-only rules live separately (`vbe-*`).

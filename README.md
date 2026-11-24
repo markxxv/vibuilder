@@ -1,26 +1,26 @@
 # vibuilder
 
-Упрощённый «Elementor» для Laravel + Filament: секции, сетки, ячейки, готовые карточки.
-Пользователь меняет **контент и безопасные параметры**, дизайн остаётся под контролем разработчика.
+A simplified "Elementor" for Laravel + Filament: sections, grids, cells and ready-made cards.
+Users edit **content and safe options only**; the design stays under the developer's control.
 
-> Статус: ранняя разработка, пакет не опубликован. Подключается локально (см. [docs/installation.md](docs/installation.md)).
+> Status: early development, not published. Install locally (see [docs/installation.md](docs/installation.md)).
 
-## Принципы
+## Principles
 
-- **Не свободный HTML/CSS-конструктор.** Только заранее определённые элементы и настройки.
-- **Всё интерактивно в preview.** Правка текста, иконок, картинок, порядка — прямо на странице.
-- **Семантические CSS-классы** (`vb-grid`, `vb-card`), а Tailwind-утилиты живут только в CSS через `@apply`.
-- **Полноэкранный редактор** на отдельной странице Filament, не поле формы.
-- **Документация обновляется в том же коммите, что и код.**
+- **Not a free-form HTML/CSS builder.** Only predefined elements and settings.
+- **Everything is interactive in the preview.** Edit text, icons, images and order right on the page.
+- **Semantic CSS classes** (`vb-grid`, `vb-card`); Tailwind utilities live only in CSS via `@apply`.
+- **Full-screen editor** on a dedicated Filament page, not a form field.
+- **Docs are updated in the same commit as the code.**
 
-## Документация
+## Documentation
 
-| Файл | О чём |
+| File | Topic |
 | --- | --- |
-| [docs/architecture.md](docs/architecture.md) | Слои пакета, потоки данных, зависимости |
-| [docs/elements.md](docs/elements.md) | Модель документа: секция → элементы → grid → ячейки, JSON и правила |
-| [docs/css-conventions.md](docs/css-conventions.md) | Именование классов и правило `@apply` |
-| [docs/media-and-uploads.md](docs/media-and-uploads.md) | Медиатека, чанковая загрузка по 400 КБ |
-| [docs/installation.md](docs/installation.md) | Локальное подключение через path-репозиторий |
-| [docs/roadmap.md](docs/roadmap.md) | Этапы и текущий прогресс |
-| [CHANGELOG.md](CHANGELOG.md) | История изменений |
+| [docs/architecture.md](docs/architecture.md) | Package layers, data flow, dependencies |
+| [docs/elements.md](docs/elements.md) | Document model: section → elements → grid → cells, JSON and rules |
+| [docs/css-conventions.md](docs/css-conventions.md) | Class naming and the `@apply` rule |
+| [docs/media-and-uploads.md](docs/media-and-uploads.md) | Media library, 400 KB chunked uploads |
+| [docs/installation.md](docs/installation.md) | Local install via a path repository |
+| [docs/roadmap.md](docs/roadmap.md) | Stages and progress |
+| [CHANGELOG.md](CHANGELOG.md) | Change history |
