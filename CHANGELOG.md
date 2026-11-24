@@ -14,4 +14,4 @@
 - `EditorController` (page, save with SHA-256 revision check and 409 on conflict, static assets), `HasVibuilder` trait, `vibuilder::editor` view; prebuilt `dist/`.
 - Tests: editor model/store/dnd/rich-text (cross-checked against PHP), and a real-Chrome e2e suite (layout shift, scroll stability, typing, undo, drag & drop, save).
 - Fix: node ids no longer rely on `crypto.randomUUID` (missing on plain-http admin pages).
-- Docs: editor; media and uploads; rendering; architecture, element model, CSS conventions, media and uploads, installation, roadmap.
+- Docs: testing in a fresh Laravel + Filament app with a one-command update (`composer vb`) and a smoke checklist; editor; media and uploads; rendering; architecture, element model, CSS conventions, media and uploads, installation, roadmap.

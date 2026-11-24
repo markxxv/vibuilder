@@ -23,6 +23,7 @@ Users edit **content and safe options only**; the design stays under the develop
 | [docs/rendering.md](docs/rendering.md) | Renderer, markup, resolvers, empty-element rules |
 | [docs/css-conventions.md](docs/css-conventions.md) | Class naming and the `@apply` rule |
 | [docs/media-and-uploads.md](docs/media-and-uploads.md) | Media library, 400 KB chunked uploads |
+| [docs/testing.md](docs/testing.md) | Try it in a fresh Laravel + Filament app; one-command updates; smoke test checklist |
 | [docs/installation.md](docs/installation.md) | Local install via a path repository |
 | [docs/roadmap.md](docs/roadmap.md) | Stages and progress |
 | [CHANGELOG.md](CHANGELOG.md) | Change history |
