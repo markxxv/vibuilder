@@ -114,19 +114,20 @@ Route::get('/p/{page}', fn (\App\Models\Page $page) => view('page', ['doc' => $p
 
 ## 4. One command to pull updates (the loop)
 
-Add to the host's `composer.json`:
+Add to the host's `composer.json` (use the line that matches how you connected the package):
 
 ```json
 "scripts": {
     "vb": [
-        "@php -r \"passthru(is_dir('../vibuilder/.git') ? 'git -C ../vibuilder pull --ff-only' : 'composer update markxxv/vibuilder --no-interaction');\"",
-        "@php artisan vendor:publish --provider=\"Spatie\\\\MediaLibrary\\\\MediaLibraryServiceProvider\" --tag=medialibrary-migrations --force",
+        "git -C ../vibuilder pull --ff-only",
         "@php artisan migrate --force",
         "@php artisan optimize:clear",
         "npm run build"
     ]
 }
 ```
+
+For the GitHub (VCS) connection replace the first line with `"@composer update markxxv/vibuilder --no-interaction"`.
 
 From then on, after each push of mine:
 
@@ -135,9 +136,9 @@ composer vb
 ```
 
 The editor bundle is prebuilt in the package's `dist/`, so no Node build of the package is needed. `npm run build`
-in the host only rebuilds your site CSS (needed when `vibuilder.css` changes; harmless otherwise).
-The `--force` publish line only matters if a later package version ships new Media Library migrations; remove it if
-you prefer to run it by hand.
+in the host only rebuilds your site CSS (needed when `vibuilder.css` changes; harmless otherwise). Never re-run
+`vendor:publish` for the Media Library migrations: it creates duplicate copies. If a package update ships new
+migrations of its own, `migrate` picks them up automatically.
 
 ## 5. Smoke test checklist
 
