@@ -22,6 +22,8 @@ Because of `symlink`, every change to the package is visible in the project imme
 ## Developing the package
 
 ```bash
-composer update
-composer test
+composer update && composer test   # PHP
+npm run test:js                    # upload client (Node 22.6+)
 ```
+
+Schedule `vibuilder:purge-uploads` daily (see [media-and-uploads.md](media-and-uploads.md)).

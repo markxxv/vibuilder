@@ -7,6 +7,7 @@ namespace Vibuilder;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Vibuilder\Console\PurgeUploadsCommand;
 use Vibuilder\Render\Renderer;
 use Vibuilder\View\Components\Document;
 
@@ -38,9 +39,11 @@ class VibuilderServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         Blade::component('vibuilder::document', Document::class);
 
         if ($this->app->runningInConsole()) {
+            $this->commands([PurgeUploadsCommand::class]);
             $this->publishes([__DIR__.'/../config/vibuilder.php' => config_path('vibuilder.php')], 'vibuilder-config');
             $this->publishes([__DIR__.'/../resources/css/vibuilder.css' => resource_path('css/vendor/vibuilder.css')], 'vibuilder-css');
         }
