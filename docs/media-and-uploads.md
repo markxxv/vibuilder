@@ -30,7 +30,7 @@ and, if `vibuilder.authorize` is set, a Gate ability.
 | PUT | `documents/{document}/uploads/{uploadId}/chunks/{index}` | Raw body, one chunk |
 | POST | `documents/{document}/uploads/{uploadId}/finalize` | Assemble, validate, add to Media Library → `{item}` |
 
-Item: `{id, name, thumbUrl, width, height, ready}`.
+Item: `{id, name, thumbUrl, url, width, height, ready}`. `thumbUrl` (200×200) feeds the library grid; `url` is the `big` WebP (or the thumb until it exists) and feeds the canvas preview. The heavy original is never sent to the editor.
 
 ## Chunked upload (400 KB)
 

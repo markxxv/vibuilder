@@ -1,0 +1,5 @@
+/* Editor bundle styles: Tailwind theme + utilities (needed for @apply), the public vb-* styles, then editor chrome. */
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/utilities" layer(utilities);
+@import "./vibuilder.css";
+@import "./editor-chrome.css";

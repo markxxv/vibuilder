@@ -95,11 +95,13 @@ class MediaController extends Controller
     private function item(Media $m): array
     {
         $ready = $m->hasGeneratedConversion('thumb');
+        $big = $m->hasGeneratedConversion('big');
 
         return [
             'id' => $m->id,
             'name' => $m->name,
-            'thumbUrl' => $ready ? $m->getUrl('thumb') : null, // 1:1 WebP
+            'thumbUrl' => $ready ? $m->getUrl('thumb') : null, // 1:1 WebP, used by the library grid
+            'url' => $big ? $m->getUrl('big') : ($ready ? $m->getUrl('thumb') : null), // canvas preview: never the heavy original
             'width' => $m->getCustomProperty('width'),
             'height' => $m->getCustomProperty('height'),
             'ready' => $ready,

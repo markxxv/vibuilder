@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="/dist/vibuilder-editor.css"></head><body style="margin:0"><div id="app"></div>
+<script src="/dist/vibuilder-editor.js"></script>
+<script>
+const u = (n) => `00000000-0000-4000-8000-${String(n).padStart(12,'0')}`;
+let n = 0;
+const el = (o) => ({ id: u(++n), ...o });
+const cell = (children) => ({ id: u(++n), children });
+const grid = () => el({ type:'grid', classes:[], columns:{desktop:3,tablet:2,mobile:1}, cells:[
+  cell([el({type:'icon',name:'file-text'}), el({type:'heading',level:3,text:'Documents'}), el({type:'text',content:{type:'doc',content:[{type:'paragraph',content:[{type:'text',text:'We prepare your documents.'}]}]}})]),
+  cell([el({type:'heading',level:3,text:'Taxes'}), el({type:'button',label:'More',url:'/x',variant:'primary',newTab:false})]),
+  cell([el({type:'heading',level:3,text:'Housing'})]) ]});
+const section = (i) => ({ id: u(++n), type:'section', anchor:'section-'+i, classes:[], variant: i===1?'hero':'default', children:[
+  el({type:'heading',level:i===1?1:2,text:'Section '+i}), el({type:'lead',text:'Lead text '+i}), grid(), grid() ]});
+const doc = { version:1, sections:[1,2,3,4].map(section) };
+window.__saved = [];
+const app = Vibuilder.mount({ host: document.getElementById('app'), props: { document: doc, revision:'r1', documentId:1, title:'Test page', backUrl:'/back', csrfToken:'t',
+  uploadsUrl:'/up/{document}', mediaUrl:'/media', iconsUrl:'/dist/icons.json', media:{} }, utilities: { save: async (d, r) => { window.__saved.push(d); return {ok:true, revision:'r2'}; } } });
+window.__store = app.store;
+</script></body></html>
