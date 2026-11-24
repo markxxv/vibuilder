@@ -13,15 +13,28 @@
         "phpunit/phpunit": "^11.0|^12.0"
     },
     "autoload": {
-        "psr-4": { "Vibuilder\\": "src/" }
+        "psr-4": {
+            "Vibuilder\\": "src/"
+        }
     },
     "autoload-dev": {
-        "psr-4": { "Vibuilder\\Tests\\": "tests/" }
+        "psr-4": {
+            "Vibuilder\\Tests\\": "tests/"
+        }
     },
     "extra": {
-        "laravel": { "providers": ["Vibuilder\\VibuilderServiceProvider"] }
+        "laravel": {
+            "providers": [
+                "Vibuilder\\VibuilderServiceProvider"
+            ]
+        }
     },
-    "scripts": { "test": "phpunit" },
+    "scripts": {
+        "test": "phpunit"
+    },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "suggest": {
+        "mallardduck/blade-lucide-icons": "Server-side Lucide SVG icons used by the renderer"
+    }
 }

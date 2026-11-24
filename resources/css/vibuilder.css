@@ -1,0 +1,117 @@
+/*
+ * vibuilder public styles. Semantic classes only; utilities live here via @apply.
+ * Import this file from the host's main Tailwind CSS entry so @apply resolves:
+ *   @import "../../vendor/markxxv/vibuilder/resources/css/vibuilder.css";
+ * Host tweaks: override the --vb-* custom properties on :root or on a section class.
+ */
+
+:root {
+    --vb-gap: 1.5rem;
+    --vb-section-space: 4rem;
+    --vb-max-width: 72rem;
+    --vb-radius: 1rem;
+    --vb-color-text: #111827;
+    --vb-color-muted: #4b5563;
+    --vb-color-accent: #dc2626;
+    --vb-color-accent-text: #ffffff;
+    --vb-color-surface: #f3f4f6;
+}
+
+/* Section: the query container, so breakpoints follow the real width (editor preview and frontend alike). */
+.vb-section {
+    @apply w-full;
+    container: vb / inline-size;
+    padding-block: var(--vb-section-space);
+    color: var(--vb-color-text);
+}
+
+.vb-section__inner {
+    @apply mx-auto flex flex-col gap-6 px-4;
+    max-width: var(--vb-max-width);
+}
+
+.vb-section--hero {
+    @apply text-center;
+}
+
+.vb-section--hero .vb-section__inner {
+    @apply items-center;
+}
+
+/* Typography */
+.vb-heading {
+    @apply font-bold leading-tight tracking-tight;
+}
+.vb-heading--1 { @apply text-4xl; }
+.vb-heading--2 { @apply text-3xl; }
+.vb-heading--3 { @apply text-xl; }
+.vb-heading--4 { @apply text-lg; }
+.vb-heading--5,
+.vb-heading--6 { @apply text-base; }
+
+.vb-lead {
+    @apply max-w-3xl text-lg;
+    color: var(--vb-color-muted);
+}
+
+.vb-text {
+    @apply flex flex-col gap-3;
+    color: var(--vb-color-muted);
+}
+.vb-text ul { @apply list-disc pl-5; }
+.vb-text ol { @apply list-decimal pl-5; }
+.vb-text a { @apply underline; color: var(--vb-color-accent); }
+
+/* Grid: column counts arrive as --vb-cols-* and switch by container width. */
+.vb-grid {
+    @apply grid;
+    gap: var(--vb-gap);
+    grid-template-columns: repeat(var(--vb-cols-mobile, 1), minmax(0, 1fr));
+}
+
+@container vb (min-width: 40rem) {
+    .vb-grid { grid-template-columns: repeat(var(--vb-cols-tablet, 2), minmax(0, 1fr)); }
+}
+
+@container vb (min-width: 64rem) {
+    .vb-grid { grid-template-columns: repeat(var(--vb-cols-desktop, 3), minmax(0, 1fr)); }
+}
+
+.vb-cell {
+    @apply flex min-w-0 flex-col items-start gap-3;
+}
+
+.vb-section--hero .vb-cell {
+    @apply items-center;
+}
+
+/* Media */
+.vb-image { @apply w-full; }
+.vb-image__img {
+    @apply block h-auto w-full object-cover;
+    border-radius: var(--vb-radius);
+}
+
+.vb-icon {
+    @apply inline-flex size-10 items-center justify-center;
+    color: var(--vb-color-accent);
+}
+.vb-icon svg { @apply size-full; }
+
+/* Buttons */
+.vb-button {
+    @apply inline-flex items-center justify-center px-5 py-2.5 font-semibold no-underline;
+    border-radius: 0.75rem;
+}
+.vb-button--primary {
+    background: var(--vb-color-accent);
+    color: var(--vb-color-accent-text);
+}
+.vb-button--secondary {
+    background: var(--vb-color-surface);
+    color: var(--vb-color-text);
+}
+.vb-button--link {
+    @apply px-0 underline;
+    color: var(--vb-color-accent);
+}

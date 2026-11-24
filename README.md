@@ -19,6 +19,7 @@ Users edit **content and safe options only**; the design stays under the develop
 | --- | --- |
 | [docs/architecture.md](docs/architecture.md) | Package layers, data flow, dependencies |
 | [docs/elements.md](docs/elements.md) | Document model: section → elements → grid → cells, JSON and rules |
+| [docs/rendering.md](docs/rendering.md) | Renderer, markup, resolvers, empty-element rules |
 | [docs/css-conventions.md](docs/css-conventions.md) | Class naming and the `@apply` rule |
 | [docs/media-and-uploads.md](docs/media-and-uploads.md) | Media library, 400 KB chunked uploads |
 | [docs/installation.md](docs/installation.md) | Local install via a path repository |
