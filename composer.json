@@ -1,0 +1,27 @@
+{
+    "name": "markxxv/vibuilder",
+    "description": "Simplified Elementor-like page builder for Laravel + Filament: sections, grids, cells, safe design.",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.3",
+        "illuminate/support": "^12.0|^13.0",
+        "spatie/laravel-medialibrary": "^11.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.0|^11.0",
+        "phpunit/phpunit": "^11.0|^12.0"
+    },
+    "autoload": {
+        "psr-4": { "Vibuilder\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Vibuilder\\Tests\\": "tests/" }
+    },
+    "extra": {
+        "laravel": { "providers": ["Vibuilder\\VibuilderServiceProvider"] }
+    },
+    "scripts": { "test": "phpunit" },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
